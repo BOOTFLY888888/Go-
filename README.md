@@ -22,6 +22,7 @@
 6.skip2/go-qrcode：生成二维码
 
 #Go配置
+
 ##版本：1.17、1.18或以上
 > go env -w GO111MODULE=on    //go mod 管理项目
 > go env -w GOPROXY=https://goproxy.cn,direct  //中国区代理，下载国外的资源就会很快
