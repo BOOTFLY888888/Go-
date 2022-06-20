@@ -24,8 +24,10 @@
 #Go配置
 
 ##版本：1.17、1.18或以上
+
 > go env -w GO111MODULE=on    //go mod 管理项目
 > go env -w GOPROXY=https://goproxy.cn,direct  //中国区代理，下载国外的资源就会很快
+
 ##安装 gowatch  //修改代码，自动运行的小插件，可自行选择是否使用  
 > go get github.com/silenceper/gowatch
 
