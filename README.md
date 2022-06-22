@@ -1,4 +1,4 @@
-# Go局域网终端互传文件
+# 「Go局域网PC与手机互传文件，且不想借助微信/QQ等骚扰软件」的软件 
 
 #需求说明
 1. 怎么把电脑上的文件传给手机？
@@ -16,7 +16,7 @@
 #用到的工具
 
 1. 编辑器：VSCode或者Goland  
-2. 一个制作桌面窗口应用的库：zserge/lorca
+2. 一个制作桌面窗口应用的库：zserge/lorca   调用chromium内核浏览器出现警告，只能自己开个chrom浏览器
 3. 桌面窗口应用前端内容：React（使用提供现成代码）
 4. 提供服务器接口：gin-gonic/gin
 5. 实现WebSocket通知：gorilla/websocket
