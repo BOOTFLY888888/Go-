@@ -10,34 +10,38 @@
 ![软件架构](https://user-images.githubusercontent.com/87600238/174656467-a9b7003c-7501-45eb-938f-72f1e8fbe31c.png)
 
 #功能思路：
+
 1. 电脑的文件上传到由Gin开发的服务器上，服务器对此文件创建相应一个可下载的资源链接，任何人点该链接都可下载，资源链接通过go库转换为二维码，二维码挂在局域网IP，手机通过扫码就可得到资源链接进而点击链接就可下载。简单来说：PC 上传文字或文件后创建二维码，提供给手机浏览器扫码下载 
 2. 手机打开网页把文件上传到gin服务器成功，然后通过WebSocket通知给电脑（前提：电脑需要提前打开网页），然后电脑网页得到一个提示框，有文件上传成功，你是否要下载。简单来说：手机在浏览器上传文字或文件后自动用 websocket 通知给 PC 端，弹出下载提示 
 
 这个项目重点是学习后端的知识，以及对前后流程有一个大概的认识。
 
 #实现思路
+
 ##用 Loca 创建窗口
 
 我了解到 Go 的如下库可以实现窗口：
-1.lorca - 调用系统现有的 Chrome/Edge 实现简单的窗口，UI 通过 HTML/CSS/JS 实现
-2.webview - 比 lorca 功能更强，实现 UI 的思路差不多
-3.fyne - 使用 Canvas 绘制的 UI 框架，性能不错
-4.qt - 更复杂更强大的 UI 框架
+1. lorca - 调用系统现有的 Chrome/Edge 实现简单的窗口，UI 通过 HTML/CSS/JS 实现
+2. webview - 比 lorca 功能更强，实现 UI 的思路差不多
+3. fyne - 使用 Canvas 绘制的 UI 框架，性能不错
+4. qt - 更复杂更强大的 UI 框架
 
 我随便挑了个最简单的 Lorca 就开始了。
 
 ##用 HTML/CSS/JS 制作 UI
-我用 React + ReactRouter 来实现页面结构，文件上传和对话框是自己用原生 JS 写的，UI 细节用 CSS3 来做，没有依赖其他 UI 组件库。
+
+我用React + ReactRouter 来实现页面结构，文件上传和对话框是自己用原生 JS 写的，UI 细节用 CSS3 来做，没有依赖其他 UI 组件库。
 
 Lorca 的主要功能就是展示我写的 index.html。
 
 ##用 gin 实现后台接口
+
 index.html 中的 JS 用到了五个接口，我使用 gin 来实现：
-1.router.GET("/uploads/:path", controllers.UploadsController) 
-2.router.GET("/api/v1/addresses", controllers.AddressesController)
-3.router.GET("/api/v1/qrcodes", controllers.QrcodesController) 
-4.router.POST("/api/v1/files", controllers.FilesController)     
-5.router.POST("/api/v1/texts", controllers.TextsController)
+1. router.GET("/uploads/:path", controllers.UploadsController) 
+2. router.GET("/api/v1/addresses", controllers.AddressesController)
+3. router.GET("/api/v1/qrcodes", controllers.QrcodesController) 
+4. router.POST("/api/v1/files", controllers.FilesController)     
+5. router.POST("/api/v1/texts", controllers.TextsController)
 
 其中的二维码生成我用的是 go-qrcode。
 
